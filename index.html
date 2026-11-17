@@ -36,6 +36,15 @@ th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;vertic
 th{font-size:13px;color:var(--muted);font-weight:600}
 td.m,th.m{color:var(--m)} td.f,th.f{color:var(--f)} td.n,th.n{color:var(--n)}
 .gr{font-weight:600}
+.gt td{vertical-align:middle}
+.gt .end{display:inline-block;min-width:44px;font-weight:700;padding:2px 8px;border-radius:8px;margin-right:6px;text-align:center}
+.gt td.m .end{background:var(--m-bg)} .gt td.f .end{background:var(--f-bg)} .gt td.n .end{background:var(--n-bg)}
+.gt .exm{color:var(--ink);white-space:nowrap}
+.gt th{font-size:14px}
+.gt th b{display:block;font-size:20px}
+.pt td:nth-child(1),.pt td:nth-child(2){white-space:nowrap}
+.pt td:nth-child(3){color:var(--ink)} .nw{white-space:nowrap}
+.alt{margin-top:8px;font-size:14px;color:#7a5b00;background:#fff8e6;border-radius:8px;padding:3px 10px}
 .ex-list{margin:6px 0;padding-left:20px} .ex-list li{margin:3px 0}
 .note{font-size:14px;color:var(--muted)}
 .tip{background:#fff8e6;border:1px solid #f3dfa6;border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px}
@@ -135,11 +144,11 @@ label.tog{font-size:14px;display:flex;align-items:center;gap:6px;cursor:pointer}
 
   <div class="box">
     <h2>2. Как узнать род по окончанию</h2>
-    <table>
-      <tr><th class="m">Мужской · ο</th><th class="f">Женский · η</th><th class="n">Средний · το</th></tr>
-      <tr><td class="m"><b>-ος</b> ο φίλος</td><td class="f"><b>-α</b> η μέρα</td><td class="n"><b>-ο</b> το βιβλίο</td></tr>
-      <tr><td class="m"><b>-ης</b> ο φοιτητής</td><td class="f"><b>-η</b> η αδελφή</td><td class="n"><b>-ι</b> το σπίτι</td></tr>
-      <tr><td class="m"><b>-ας</b> ο άντρας</td><td></td><td class="n"><b>-μα</b> το γράμμα</td></tr>
+    <table class="gt">
+      <tr><th class="m"><b>ο</b>мужской</th><th class="f"><b>η</b>женский</th><th class="n"><b>το</b>средний</th></tr>
+      <tr><td class="m"><span class="end">-ος</span><span class="exm"><b>ο</b> φίλ<b>ος</b></span></td><td class="f"><span class="end">-α</span><span class="exm"><b>η</b> μέρ<b>α</b></span></td><td class="n"><span class="end">-ο</span><span class="exm"><b>το</b> βιβλί<b>ο</b></span></td></tr>
+      <tr><td class="m"><span class="end">-ης</span><span class="exm"><b>ο</b> φοιτητ<b>ής</b></span></td><td class="f"><span class="end">-η</span><span class="exm"><b>η</b> αδελφ<b>ή</b></span></td><td class="n"><span class="end">-ι</span><span class="exm"><b>το</b> σπίτ<b>ι</b></span></td></tr>
+      <tr><td class="m"><span class="end">-ας</span><span class="exm"><b>ο</b> άντρ<b>ας</b></span></td><td></td><td class="n"><span class="end">-μα</span><span class="exm"><b>το</b> γράμ<b>μα</b></span></td></tr>
     </table>
     <div class="tip">Короче: <b>на -ς</b> обычно <b style="color:var(--m)">мужской</b>; <b>на -α / -η</b> — <b style="color:var(--f)">женский</b>; <b>на -ο / -ι / -μα</b> — <b style="color:var(--n)">средний</b>. Внимание: «-μα» сильнее, чем «-α». Сначала проверяйте, не кончается ли слово на -μα: το γράμμα, το όνομα.</div>
   </div>
@@ -161,30 +170,40 @@ label.tog{font-size:14px;display:flex;align-items:center;gap:6px;cursor:pointer}
 
   <div class="box">
     <h2>4. Множественное число существительных</h2>
-    <table>
+    <table class="pt">
       <tr><th>Ед.ч.</th><th>Мн.ч.</th><th>Пример</th></tr>
-      <tr><td class="m gr">ο … -ος</td><td class="m gr">οι … -οι</td><td>ο φίλος → οι φίλοι</td></tr>
-      <tr><td class="m gr">ο … -ης</td><td class="m gr">οι … -ες</td><td>ο μαθητής → οι μαθητές</td></tr>
-      <tr><td class="m gr">ο … -ας</td><td class="m gr">οι … -ες</td><td>ο άντρας → οι άντρες</td></tr>
-      <tr><td class="f gr">η … -α</td><td class="f gr">οι … -ες</td><td>η μέρα → οι μέρες</td></tr>
-      <tr><td class="f gr">η … -η</td><td class="f gr">οι … -ες</td><td>η αδελφή → οι αδελφές</td></tr>
-      <tr><td class="n gr">το … -ο</td><td class="n gr">τα … -α</td><td>το βιβλίο → τα βιβλία</td></tr>
-      <tr><td class="n gr">το … -ι</td><td class="n gr">τα … -ια</td><td>το παιδί → τα παιδιά</td></tr>
-      <tr><td class="n gr">το … -μα</td><td class="n gr">τα … -ματα</td><td>το γράμμα → τα γράμματα</td></tr>
-    </table>
+      <tr><td class="m gr">ο … -ος</td><td class="m gr">οι … -οι</td><td><span class="nw"><b class="m">ο</b> φίλ<b class="m">ος</b></span> → <span class="nw"><b class="m">οι</b> φίλ<b class="m">οι</b></span></td></tr>
+      <tr><td class="m gr">ο … -ης</td><td class="m gr">οι … -ες</td><td><span class="nw"><b class="m">ο</b> μαθητ<b class="m">ής</b></span> → <span class="nw"><b class="m">οι</b> μαθητ<b class="m">ές</b></span></td></tr>
+      <tr><td class="m gr">ο … -ας</td><td class="m gr">οι … -ες</td><td><span class="nw"><b class="m">ο</b> άντρ<b class="m">ας</b></span> → <span class="nw"><b class="m">οι</b> άντρ<b class="m">ες</b></span></td></tr>
+      <tr><td class="f gr">η … -α</td><td class="f gr">οι … -ες</td><td><span class="nw"><b class="f">η</b> μέρ<b class="f">α</b></span> → <span class="nw"><b class="f">οι</b> μέρ<b class="f">ες</b></span></td></tr>
+      <tr><td class="f gr">η … -η</td><td class="f gr">οι … -ες</td><td><span class="nw"><b class="f">η</b> αδελφ<b class="f">ή</b></span> → <span class="nw"><b class="f">οι</b> αδελφ<b class="f">ές</b></span></td></tr>
+      <tr><td class="n gr">το … -ο</td><td class="n gr">τα … -α</td><td><span class="nw"><b class="n">το</b> βιβλί<b class="n">ο</b></span> → <span class="nw"><b class="n">τα</b> βιβλί<b class="n">α</b></span></td></tr>
+      <tr><td class="n gr">το … -ι</td><td class="n gr">τα … -ια</td><td><span class="nw"><b class="n">το</b> παιδ<b class="n">ί</b></span> → <span class="nw"><b class="n">τα</b> παιδ<b class="n">ιά</b></span></td></tr>
+      <tr><td class="n gr">το … -μα</td><td class="n gr">τα … -ματα</td><td><span class="nw"><b class="n">το</b> γράμ<b class="n">μα</b></span> → <span class="nw"><b class="n">τα</b> γράμ<b class="n">ματα</b></span></td></tr>
+      </table>
+    <p class="note">Ударение в примерах может сдвигаться: ο μαθητ<b>ής</b> → οι μαθητ<b>ές</b>, το παιδ<b>ί</b> → τα παιδ<b>ιά</b>.</p>
     <div class="tip">Ударение может стоять только на одном из трёх последних слогов. Поэтому у слов на -μα во множественном числе оно сдвигается: <b>το μάθημα → τα μαθήματα</b>, <b>το όνομα → τα ονόματα</b>.</div>
   </div>
 
   <div class="box">
     <h2>5. Исключения, которые стоит запомнить</h2>
+    <p><b>Женский род на -ος.</b> Таких слов немного, но они частые (во мн.ч. — <b>οι … -οι</b>):</p>
     <ul class="ex-list">
-      <li><b>ο καφές</b> — кофе, мужской род на -ές (мн.ч. οι καφέδες).</li>
-      <li><b>η οδός</b> — улица (в названиях), женский род на -ος.</li>
-      <li><b>το γάλα</b> (молоко), <b>το κρέας</b> (мясо), <b>το φως</b> (свет) — средний род.</li>
-      <li>Острова — всегда женского рода: <b>η Κρήτη</b>, <b>η Κύπρος</b>.</li>
-      <li>Иностранные слова обычно среднего рода: <b>το ταξί</b>, <b>το μπαρ</b>.</li>
-      <li>Детёныши и дети — средний род: <b>το παιδί</b>, <b>το κορίτσι</b>, <b>το αγόρι</b>, <b>το μωρό</b>.</li>
+      <li><b>η οδός</b> — улица (в названиях: οδός Σταδίου), <b>η λεωφόρος</b> — проспект</li>
+      <li><b>η είσοδος</b> — вход, <b>η έξοδος</b> — выход</li>
+      <li><b>η μέθοδος</b> — метод, <b>η περίοδος</b> — период, <b>η παράγραφος</b> — абзац, <b>η διάλεκτος</b> — диалект</li>
+      <li>Профессии на -ος бывают обоих родов: <b>ο γιατρός</b> (врач-мужчина) — <b>η γιατρός</b> (врач-женщина)</li>
     </ul>
+    <p><b>Средний род с «чужим» окончанием:</b> <b>το γάλα</b> — молоко, <b>το κρέας</b> — мясо, <b>το φως</b> — свет.</p>
+    <p><b>Мужской род на -ές:</b> <b>ο καφές</b> — кофе (мн.ч. οι καφέδες).</p>
+    <p><b>Острова</b> почти всегда женского рода: <b>η Κρήτη, η Κύπρος, η Ρόδος, η Πάρος, η Σαντορίνη</b>. Исключения:</p>
+    <ul class="ex-list">
+      <li><b>ο Πόρος</b> — мужской род (не путать с <b>η Πάρος</b>!), <b>ο Άη Στράτης</b></li>
+      <li>средний род: <b>το Καστελλόριζο</b>, <b>το Αγαθονήσι</b></li>
+      <li>группы островов — во мн.ч.: <b>τα Δωδεκάνησα</b>, <b>τα Επτάνησα</b>, но <b>οι Κυκλάδες</b></li>
+    </ul>
+    <p><b>Иностранные слова</b> обычно среднего рода: <b>το ταξί</b>, <b>το μπαρ</b>. <b>Дети и детёныши</b> — тоже средний: <b>το παιδί</b>, <b>το κορίτσι</b>, <b>το αγόρι</b>, <b>το μωρό</b>.</p>
+    <div class="tip">💬 На карточках жёлтым отмечены <b>разговорные и другие варианты</b>, например <b>οι πατεράδες</b> или <b>ο αδερφός</b>. Их стоит узнавать на слух, но в упражнениях проверяется основная форма.</div>
   </div>
 
   <div class="box">
@@ -283,7 +302,7 @@ function parseCSV(text){
     const line = raw.trim();
     if(!line || line.startsWith('#')) continue;
     const c = line.split(sep).map(s => s.trim());
-    const [topic, word, ru, pl, note=''] = c;
+    const [topic, word, ru, pl, note='', alt=''] = c;
     if(!word || !ru) continue;
     const sp = word.indexOf(' ');
     if(sp < 0) continue;
@@ -292,7 +311,7 @@ function parseCSV(text){
     if(!g) continue;
     const plParts = (pl||'').split(' ');
     out.push({
-      topic: topic || 'Без темы', word, art, bare, ru, g, note,
+      topic: topic || 'Без темы', word, art, bare, ru, g, note, alt,
       pl: pl || '', plArt: plParts[0] || GEN[g].pl, plBare: plParts.slice(1).join(' '),
       exc: /искл/i.test(note),
       irr: /искл|неправ/i.test(note),
@@ -375,7 +394,7 @@ function renderCard(){
     <div class="big"><span class="a">${esc(w.art)}</span>${esc(w.bare)}</div>
     <span class="gtag ${w.g}-t">${GEN[w.g].name} род</span>`;
   const plural = w.pl ? `<div class="meta">мн.ч.: <b class="${w.g}"><span class="a ${w.g}">${esc(w.plArt)}</span> ${esc(w.plBare)}</b></div>` : '';
-  const noteHtml = w.note ? `<div class="meta">⚠️ ${esc(w.note)}</div>` : '';
+  const noteHtml = (w.note ? `<div class="meta">⚠️ ${esc(w.note)}</div>` : '') + (w.alt ? `<div class="alt">💬 ${esc(w.alt)}</div>` : '');
   const russian = `${kb}<div class="ru">${esc(w.ru)}</div>`;
   const hint = '<span class="hint">нажмите, чтобы перевернуть</span>';
   if(ruFirst){
@@ -507,6 +526,12 @@ const EXS = [
       return { q:`${esc(a.bare)} / ${esc(b.bare)}`, sub:`${esc(a.ru)} / ${esc(b.ru)}`, cols:'',
         opts:shuffle([right, ...wrong]), ans:right,
         explain:`${gExplain(a)}<br>${gExplain(b)}`, item:right }; } },
+  { id:'exc', title:'Ловушки: исключения', desc:'Слова, где окончание обманывает', min:3,
+    src: () => WORDS.filter(w => w.exc),
+    make(){ const w = pick(WORDS.filter(w => w.exc));
+      return { q:`Να <span class="blank"></span> ${esc(w.bare)}.`, sub:esc(w.ru), cols:'three',
+        opts:['ο','η','το'], ans:GEN[w.g].art,
+        explain:`<b>${esc(w.word)}</b> — ${esc(w.note || 'исключение')}. Мн.ч.: ${esc(w.pl)}`, item:w.word }; } },
   { id:'tr', title:'Перевод', desc:'Греческий ↔ русский', min:4,
     src: pool,
     make(){ const ws = pool(); const w = pick(ws);
@@ -528,7 +553,7 @@ const EXS = [
       return { q:`Γεια σου, <span class="blank"></span>!`, sub:`(${esc(nom)})`, cols:'three',
         opts:shuffle([voc, ...wrong]), ans:voc, explain:`${esc(nom)} → <b>${esc(voc)}!</b> ${why} Артикль при обращении не ставится.`, item:`${nom} → ${voc}!` }; } },
   { id:'mix', title:'Всё вперемешку', desc:'Задания всех типов', min:4, src: pool,
-    make(){ const ok = EXS.filter(x => x.id !== 'mix' && x.src().length >= Math.max(x.min, 1));
+    make(){ const ok = EXS.filter(x => !['mix','exc'].includes(x.id) && x.src().length >= Math.max(x.min, 1));
       return pick(ok).make(); } }
 ];
 
@@ -539,7 +564,7 @@ function renderExMenu(){
   const best = store.get('gr-best', {});
   $('#exGrid').innerHTML = EXS.map(x => {
     const enough = x.src().length >= Math.max(x.min, 1);
-    const b = best[x.id + '|' + (x.id === 'voc' ? '' : E.topic)];
+    const b = best[x.id + '|' + (['voc','exc'].includes(x.id) ? '' : E.topic)];
     return `<button class="ex-card" data-id="${x.id}" ${enough ? '' : 'disabled style="opacity:.45"'}>
       <b>${esc(x.title)}</b><span>${esc(x.desc)}</span>${b !== undefined ? `<span class="best">лучший результат: ${b}/10</span>` : ''}</button>`;
   }).join('');
@@ -587,7 +612,7 @@ function answer(btn){
 }
 
 function finish(){
-  const key = R.ex.id + '|' + (R.ex.id === 'voc' ? '' : E.topic);
+  const key = R.ex.id + '|' + (['voc','exc'].includes(R.ex.id) ? '' : E.topic);
   const best = store.get('gr-best', {});
   if(best[key] === undefined || R.score > best[key]){ best[key] = R.score; store.set('gr-best', best); }
   const msg = R.score === 10 ? 'Идеально! 🎉' : R.score >= 8 ? 'Отлично!' : R.score >= 5 ? 'Хорошо, ещё немного практики.' : 'Загляните в «Правила» и попробуйте ещё раз.';
