@@ -1,0 +1,12 @@
+{
+  "subtitle": "слова · род · артикли",
+  "cheat": true,
+  "tabs": [
+    "rules",
+    "list",
+    "cards",
+    "ex",
+    "video"
+  ],
+  "start": "rules"
+}

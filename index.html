@@ -23,8 +23,8 @@ h1{font-size:22px;margin:0;letter-spacing:.5px}
 .cheat{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 8px}
 .cheat span{font-size:13px;padding:3px 9px;border-radius:999px;font-weight:600;white-space:nowrap}
 .m-t{color:var(--m);background:var(--m-bg)} .f-t{color:var(--f);background:var(--f-bg)} .n-t{color:var(--n);background:var(--n-bg)}
-nav{display:flex;gap:4px}
-nav button{flex:1;border:0;background:none;padding:10px 4px 12px;font:inherit;font-size:15px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer}
+nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none} nav::-webkit-scrollbar{display:none}
+nav button{flex:1 0 auto;white-space:nowrap;border:0;background:none;padding:10px 4px 12px;font:inherit;font-size:15px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer}
 nav button.on{color:var(--ink);border-bottom-color:var(--ink)}
 main{padding:18px 0 60px}
 section{display:none} section.on{display:block}
@@ -112,22 +112,31 @@ label.tog{font-size:14px;display:flex;align-items:center;gap:6px;cursor:pointer}
 .result .score{font-size:44px;font-weight:700;margin:8px 0}
 .mist{text-align:left;margin-top:12px;font-size:15px}
 .mist li{margin:4px 0}
+.wl td:first-child{font-weight:600;white-space:nowrap}
+.wl .pl{color:var(--muted);font-size:14px}
+.wl .alt2{display:block;font-size:13px;color:#7a5b00}
+.vid{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000;margin-top:8px}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vlesson{font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+@media print{header,.noprint,.chips{display:none!important} body{background:#fff} section{display:none!important} #list{display:block!important} .box{border:0;padding:0;break-inside:avoid}}
 .err{background:#fdecec;color:#9b1c1c;padding:14px;border-radius:12px}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <div class="top"><h1>Ελληνικά</h1><span class="sub">слова · род · артикли</span></div>
-    <div class="cheat">
+    <div class="top"><h1>Ελληνικά</h1><span class="sub" id="subtitle"></span></div>
+    <div class="cheat" id="cheat" style="display:none">
       <span class="m-t">ο — -ος -ης -ας</span>
       <span class="f-t">η — -α -η</span>
       <span class="n-t">το — -ο -ι -μα</span>
     </div>
     <nav>
       <button data-tab="rules">Правила</button>
+      <button data-tab="list">Слова</button>
       <button data-tab="cards">Карточки</button>
       <button data-tab="ex">Упражнения</button>
+      <button data-tab="video">Видео</button>
     </nav>
   </div>
 </header>
@@ -136,86 +145,17 @@ label.tog{font-size:14px;display:flex;align-items:center;gap:6px;cursor:pointer}
 
 <!-- ============ ПРАВИЛА ============ -->
 <section id="rules">
-  <div class="box">
-    <h2>1. Три рода и артикль</h2>
-    <p>В греческом три рода: <b style="color:var(--m)">мужской</b>, <b style="color:var(--f)">женский</b> и <b style="color:var(--n)">средний</b>. Род показывает артикль, который стоит перед словом. Учите слово сразу <b>вместе с артиклем</b>: не «βιβλίο», а «το βιβλίο».</p>
-    <p class="note">Род в греческом и в русском часто не совпадает: «το παιδί» (ребёнок), «το κορίτσι» (девочка) и «το αγόρι» (мальчик) — среднего рода.</p>
-  </div>
-
-  <div class="box">
-    <h2>2. Как узнать род по окончанию</h2>
-    <table class="gt">
-      <tr><th class="m"><b>ο</b>мужской</th><th class="f"><b>η</b>женский</th><th class="n"><b>το</b>средний</th></tr>
-      <tr><td class="m"><span class="end">-ος</span><span class="exm"><b>ο</b> φίλ<b>ος</b></span></td><td class="f"><span class="end">-α</span><span class="exm"><b>η</b> μέρ<b>α</b></span></td><td class="n"><span class="end">-ο</span><span class="exm"><b>το</b> βιβλί<b>ο</b></span></td></tr>
-      <tr><td class="m"><span class="end">-ης</span><span class="exm"><b>ο</b> φοιτητ<b>ής</b></span></td><td class="f"><span class="end">-η</span><span class="exm"><b>η</b> αδελφ<b>ή</b></span></td><td class="n"><span class="end">-ι</span><span class="exm"><b>το</b> σπίτ<b>ι</b></span></td></tr>
-      <tr><td class="m"><span class="end">-ας</span><span class="exm"><b>ο</b> άντρ<b>ας</b></span></td><td></td><td class="n"><span class="end">-μα</span><span class="exm"><b>το</b> γράμ<b>μα</b></span></td></tr>
-    </table>
-    <div class="tip">Короче: <b>на -ς</b> обычно <b style="color:var(--m)">мужской</b>; <b>на -α / -η</b> — <b style="color:var(--f)">женский</b>; <b>на -ο / -ι / -μα</b> — <b style="color:var(--n)">средний</b>. Внимание: «-μα» сильнее, чем «-α». Сначала проверяйте, не кончается ли слово на -μα: το γράμμα, το όνομα.</div>
-  </div>
-
-  <div class="box">
-    <h2>3. Артикли: единственное и множественное число</h2>
-    <table>
-      <tr><th></th><th class="m">М.р.</th><th class="f">Ж.р.</th><th class="n">Ср.р.</th></tr>
-      <tr><td>Определённый, ед.ч.</td><td class="m gr">ο</td><td class="f gr">η</td><td class="n gr">το</td></tr>
-      <tr><td>Неопределённый, ед.ч.</td><td class="m gr">ένας</td><td class="f gr">μία / μια</td><td class="n gr">ένα</td></tr>
-      <tr><td>Определённый, мн.ч.</td><td class="m gr">οι</td><td class="f gr">οι</td><td class="n gr">τα</td></tr>
-    </table>
-    <p class="note">Во множественном числе мужской и женский род получают один и тот же артикль <b>οι</b>, а средний — <b>τα</b>. Неопределённого артикля во множественном числе нет.</p>
-    <ul class="ex-list">
-      <li><b>Определённый</b> (ο, η, το) — конкретный, уже знакомый предмет: <span class="gr">το βιβλίο μου</span> — моя книга.</li>
-      <li><b>Неопределённый</b> (ένας, μία, ένα) — «какой-то, один»: <span class="gr">ένα βιβλίο</span> — (какая-то) книга.</li>
-    </ul>
-  </div>
-
-  <div class="box">
-    <h2>4. Множественное число существительных</h2>
-    <table class="pt">
-      <tr><th>Ед.ч.</th><th>Мн.ч.</th><th>Пример</th></tr>
-      <tr><td class="m gr">ο … -ος</td><td class="m gr">οι … -οι</td><td><span class="nw"><b class="m">ο</b> φίλ<b class="m">ος</b></span> → <span class="nw"><b class="m">οι</b> φίλ<b class="m">οι</b></span></td></tr>
-      <tr><td class="m gr">ο … -ης</td><td class="m gr">οι … -ες</td><td><span class="nw"><b class="m">ο</b> μαθητ<b class="m">ής</b></span> → <span class="nw"><b class="m">οι</b> μαθητ<b class="m">ές</b></span></td></tr>
-      <tr><td class="m gr">ο … -ας</td><td class="m gr">οι … -ες</td><td><span class="nw"><b class="m">ο</b> άντρ<b class="m">ας</b></span> → <span class="nw"><b class="m">οι</b> άντρ<b class="m">ες</b></span></td></tr>
-      <tr><td class="f gr">η … -α</td><td class="f gr">οι … -ες</td><td><span class="nw"><b class="f">η</b> μέρ<b class="f">α</b></span> → <span class="nw"><b class="f">οι</b> μέρ<b class="f">ες</b></span></td></tr>
-      <tr><td class="f gr">η … -η</td><td class="f gr">οι … -ες</td><td><span class="nw"><b class="f">η</b> αδελφ<b class="f">ή</b></span> → <span class="nw"><b class="f">οι</b> αδελφ<b class="f">ές</b></span></td></tr>
-      <tr><td class="n gr">το … -ο</td><td class="n gr">τα … -α</td><td><span class="nw"><b class="n">το</b> βιβλί<b class="n">ο</b></span> → <span class="nw"><b class="n">τα</b> βιβλί<b class="n">α</b></span></td></tr>
-      <tr><td class="n gr">το … -ι</td><td class="n gr">τα … -ια</td><td><span class="nw"><b class="n">το</b> παιδ<b class="n">ί</b></span> → <span class="nw"><b class="n">τα</b> παιδ<b class="n">ιά</b></span></td></tr>
-      <tr><td class="n gr">το … -μα</td><td class="n gr">τα … -ματα</td><td><span class="nw"><b class="n">το</b> γράμ<b class="n">μα</b></span> → <span class="nw"><b class="n">τα</b> γράμ<b class="n">ματα</b></span></td></tr>
-      </table>
-    <p class="note">Ударение в примерах может сдвигаться: ο μαθητ<b>ής</b> → οι μαθητ<b>ές</b>, το παιδ<b>ί</b> → τα παιδ<b>ιά</b>.</p>
-    <div class="tip">Ударение может стоять только на одном из трёх последних слогов. Поэтому у слов на -μα во множественном числе оно сдвигается: <b>το μάθημα → τα μαθήματα</b>, <b>το όνομα → τα ονόματα</b>.</div>
-  </div>
-
-  <div class="box">
-    <h2>5. Исключения, которые стоит запомнить</h2>
-    <p><b>Женский род на -ος.</b> Таких слов немного, но они частые (во мн.ч. — <b>οι … -οι</b>):</p>
-    <ul class="ex-list">
-      <li><b>η οδός</b> — улица (в названиях: οδός Σταδίου), <b>η λεωφόρος</b> — проспект</li>
-      <li><b>η είσοδος</b> — вход, <b>η έξοδος</b> — выход</li>
-      <li><b>η μέθοδος</b> — метод, <b>η περίοδος</b> — период, <b>η παράγραφος</b> — абзац, <b>η διάλεκτος</b> — диалект</li>
-      <li>Профессии на -ος бывают обоих родов: <b>ο γιατρός</b> (врач-мужчина) — <b>η γιατρός</b> (врач-женщина)</li>
-    </ul>
-    <p><b>Средний род с «чужим» окончанием:</b> <b>το γάλα</b> — молоко, <b>το κρέας</b> — мясо, <b>το φως</b> — свет.</p>
-    <p><b>Мужской род на -ές:</b> <b>ο καφές</b> — кофе (мн.ч. οι καφέδες).</p>
-    <p><b>Острова</b> почти всегда женского рода: <b>η Κρήτη, η Κύπρος, η Ρόδος, η Πάρος, η Σαντορίνη</b>. Исключения:</p>
-    <ul class="ex-list">
-      <li><b>ο Πόρος</b> — мужской род (не путать с <b>η Πάρος</b>!), <b>ο Άη Στράτης</b></li>
-      <li>средний род: <b>το Καστελλόριζο</b>, <b>το Αγαθονήσι</b></li>
-      <li>группы островов — во мн.ч.: <b>τα Δωδεκάνησα</b>, <b>τα Επτάνησα</b>, но <b>οι Κυκλάδες</b></li>
-    </ul>
-    <p><b>Иностранные слова</b> обычно среднего рода: <b>το ταξί</b>, <b>το μπαρ</b>. <b>Дети и детёныши</b> — тоже средний: <b>το παιδί</b>, <b>το κορίτσι</b>, <b>το αγόρι</b>, <b>το μωρό</b>.</p>
-    <div class="tip">💬 На карточках жёлтым отмечены <b>разговорные и другие варианты</b>, например <b>οι πατεράδες</b> или <b>ο αδερφός</b>. Их стоит узнавать на слух, но в упражнениях проверяется основная форма.</div>
-  </div>
-
-  <div class="box">
-    <h2>6. Обращение (звательный падеж)</h2>
-    <p>Когда мы к кому-то обращаемся, <b>артикль не ставим</b>, и окончание может меняться:</p>
-    <ul class="ex-list">
-      <li>На <b>-ς</b> → <b>-ς</b> убираем: ο Κώστας → <b>Κώστα!</b>, ο Γιάννης → <b>Γιάννη!</b>, ο Νίκος → <b>Νίκο!</b></li>
-      <li>Без <b>-ς</b> → слово не меняется: η Ελένη → <b>Ελένη!</b>, η Μαρία → <b>Μαρία!</b></li>
-      <li>Исключение: имена на <b>-ος</b> длиннее двух слогов и слова <b>θείος, κύριος</b> → <b>-ε</b>: ο Άγγελος → <b>Άγγελε!</b>, ο κύριος → <b>κύριε!</b></li>
-    </ul>
-  </div>
+  <div id="rulesBody"></div>
 </section>
+
+<!-- ============ СПИСОК ============ -->
+<section id="list">
+  <div class="row" style="margin-bottom:10px"><span class="small" id="listCount"></span><span class="spacer"></span><button class="linkbtn noprint" onclick="window.print()">🖨 Распечатать</button></div>
+  <div id="listBody"></div>
+</section>
+
+<!-- ============ ВИДЕО ============ -->
+<section id="video"><div id="videoBody"></div></section>
 
 <!-- ============ КАРТОЧКИ ============ -->
 <section id="cards">
@@ -264,9 +204,13 @@ label.tog{font-size:14px;display:flex;align-items:center;gap:6px;cursor:pointer}
 
 /* ---------- helpers ---------- */
 const $ = s => document.querySelector(s);
+const params = new URLSearchParams(location.search);
+const CODE = /^[a-z0-9_-]{1,30}$/i.test(params.get('s') || '') ? params.get('s').toLowerCase() : 'a1';
+const BASE = `students/${CODE}/`;
+const NS = CODE === 'a1' ? '' : CODE + ':';
 const store = {
-  get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
-  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+  get(k, d){ try{ const v = localStorage.getItem(NS + k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(NS + k, JSON.stringify(v)); }catch(e){} }
 };
 const shuffle = a => { a = a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
 const pick = a => a[Math.floor(Math.random()*a.length)];
@@ -321,6 +265,7 @@ function parseCSV(text){
   return out;
 }
 
+const hasReview = () => WORDS.some(w => w.topic.startsWith(REVIEW_PREFIX));
 const topicsOf = () => { const t=[]; WORDS.forEach(w => { if(!t.includes(w.topic)) t.push(w.topic); }); return t; };
 function wordsFor(topic){
   if(topic === ALL) return WORDS;
@@ -329,7 +274,9 @@ function wordsFor(topic){
 }
 
 /* ---------- tabs ---------- */
+let TABS = [];
 function showTab(t){
+  if(!TABS.includes(t)) t = TABS[0];
   document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.tab === t));
   document.querySelectorAll('main section').forEach(s => s.classList.toggle('on', s.id === t));
   store.set('gr-tab', t);
@@ -357,7 +304,7 @@ let known = new Set(store.get('gr-known', []));
 const C = { topic: store.get('gr-topic', NEW), order: [], i: 0 };
 
 function buildChips(el, current, onPick){
-  const list = [NEW, ...topicsOf(), ALL];
+  const list = hasReview() ? [NEW, ...topicsOf(), ALL] : [ALL, ...topicsOf()];
   el.innerHTML = list.map(t => `<button class="chip${t===current?' on':''}" data-t="${esc(t)}">${esc(t)}</button>`).join('');
   el.querySelectorAll('.chip').forEach(b => b.onclick = () => {
     el.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x === b));
@@ -367,7 +314,7 @@ function buildChips(el, current, onPick){
 
 function rebuildDeck(doShuffle){
   let list = wordsFor(C.topic);
-  if(!list.length){ C.topic = NEW; list = wordsFor(NEW); }
+  if(!list.length){ C.topic = ALL; list = wordsFor(ALL); }
   if($('#onlyNew').checked) list = list.filter(w => !known.has(w.key));
   C.order = doShuffle ? shuffle(list) : list;
   C.i = 0;
@@ -627,27 +574,76 @@ function finish(){
   $('#back2').onclick = renderExMenu;
 }
 
+/* ---------- list ---------- */
+function renderList(){
+  const topics = topicsOf();
+  const n = WORDS.length, n10 = n % 10, n100 = n % 100;
+  $('#listCount').textContent = n + ' ' + (n10 === 1 && n100 !== 11 ? 'слово' : n10 >= 2 && n10 <= 4 && (n100 < 12 || n100 > 14) ? 'слова' : 'слов');
+  $('#listBody').innerHTML = topics.map(t => {
+    const ws = WORDS.filter(w => w.topic === t);
+    return `<div class="box"><h2>${esc(t)}</h2><table class="wl">${ws.map(w =>
+      `<tr><td><span class="a ${w.g}">${esc(w.art)}</span> ${esc(w.bare)}${w.pl ? `<div class="pl">${esc(w.pl)}</div>` : ''}</td>
+       <td>${esc(w.ru)}${w.alt ? `<span class="alt2">💬 ${esc(w.alt)}</span>` : ''}</td></tr>`).join('')}</table></div>`;
+  }).join('');
+}
+
+/* ---------- videos ---------- */
+function ytId(u){
+  const m = String(u).match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+function renderVideos(list){
+  $('#videoBody').innerHTML = list.map(v => {
+    const id = ytId(v.url);
+    const body = id ? `<div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${esc(v.title)}" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`
+                    : `<p><a href="${esc(v.url)}" target="_blank" rel="noopener">Открыть ссылку ↗</a></p>`;
+    return `<div class="box">${v.lesson ? `<div class="vlesson">${esc(v.lesson)}</div>` : ''}<h2>${esc(v.title)}</h2>${v.note ? `<p class="note">${esc(v.note)}</p>` : ''}${body}</div>`;
+  }).join('');
+}
+function parseVideos(text){
+  const lines = text.replace(/^﻿/, '').split(/\r?\n/).slice(1);
+  return lines.map(l => l.trim()).filter(l => l && !l.startsWith('#')).map(l => {
+    const [lesson, title, url, note=''] = l.split(';').map(x => x.trim());
+    return {lesson, title, url, note};
+  }).filter(v => v.url && /^https?:\/\//.test(v.url));
+}
+
 /* ---------- start ---------- */
+async function get(name){
+  try{ const r = await fetch(BASE + name, {cache:'no-cache'}); return r.ok ? await r.text() : null; }catch(e){ return null; }
+}
 async function init(){
-  try{
-    const r = await fetch('words.csv', {cache:'no-cache'});
-    if(!r.ok) throw new Error(r.status);
-    WORDS = parseCSV(await r.text());
-    if(!WORDS.length) throw new Error('empty');
-  }catch(e){
-    document.querySelector('main').insertAdjacentHTML('afterbegin',
-      '<div class="err">Не удалось загрузить словарь (words.csv). Проверьте, что файл лежит рядом со страницей.</div>');
+  const [cfgT, wordsT, rulesT, vidT] = await Promise.all([get('config.json'), get('words.csv'), get('rules.html'), get('videos.csv')]);
+  let cfg = {};
+  try{ cfg = cfgT ? JSON.parse(cfgT) : {}; }catch(e){}
+  if(!cfgT && !wordsT && !rulesT && !vidT){
+    document.querySelector('main').innerHTML = '<div class="err">Страница не найдена. Проверьте ссылку.</div>';
+    document.querySelector('nav').style.display = 'none';
     return;
   }
-  const topics = [NEW, ALL, ...topicsOf()];
-  if(!topics.includes(C.topic)) C.topic = NEW;
-  if(!topics.includes(E.topic)) E.topic = NEW;
-  $('#dir').checked = store.get('gr-dir', false);
-  buildChips($('#topics'), C.topic, t => { C.topic = t; store.set('gr-topic', t); rebuildDeck(false); });
-  buildChips($('#exTopics'), E.topic, t => { E.topic = t; store.set('gr-extopic', t); renderExMenu(); });
-  rebuildDeck(false);
-  renderExMenu();
-  showTab(store.get('gr-tab', 'rules'));
+  if(cfg.subtitle) $('#subtitle').textContent = cfg.subtitle;
+  if(cfg.cheat) $('#cheat').style.display = '';
+  WORDS = wordsT ? parseCSV(wordsT) : [];
+  const vids = vidT ? parseVideos(vidT) : [];
+  const avail = {rules: !!rulesT, list: WORDS.length > 0, cards: WORDS.length > 0, ex: WORDS.length > 0, video: vids.length > 0};
+  TABS = (cfg.tabs || ['rules','list','cards','ex','video']).filter(t => avail[t]);
+  document.querySelectorAll('nav button').forEach(b => { b.style.display = TABS.includes(b.dataset.tab) ? '' : 'none'; });
+  if(rulesT) $('#rulesBody').innerHTML = rulesT;
+  if(vids.length) renderVideos(vids);
+  if(WORDS.length){
+    const def = hasReview() ? NEW : ALL;
+    const topics = [def, ALL, ...topicsOf()];
+    if(!topics.includes(C.topic)) C.topic = def;
+    if(!topics.includes(E.topic)) E.topic = def;
+    $('#dir').checked = store.get('gr-dir', false);
+    buildChips($('#topics'), C.topic, t => { C.topic = t; store.set('gr-topic', t); rebuildDeck(false); });
+    buildChips($('#exTopics'), E.topic, t => { E.topic = t; store.set('gr-extopic', t); renderExMenu(); });
+    rebuildDeck(false);
+    renderExMenu();
+    renderList();
+  }
+  if(TABS.length < 2) document.querySelector('nav').style.display = 'none';
+  showTab(store.get('gr-tab', cfg.start || TABS[0]));
 }
 init();
 })();
